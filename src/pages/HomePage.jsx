@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PizzaCard from "../components/PizzaCard";
 
 export default function HomePage() {
   const [pizzas, setPizzas] = useState([]);
@@ -23,8 +24,18 @@ export default function HomePage() {
     <>
       <h1 className="text-primary">Pizzeria 8 Bit</h1>
       <section>
-        {pizzas.map((pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} />
+        {pizzas.map((card, index, pizza) => (
+          <div key={index} pizza={pizza}>
+            <PizzaCard
+              name={card.name}
+              description={card.description}
+              price={card.price}
+              foto={card.foto}
+              id={card.id}
+              isDetail={false}
+              ingredients={pizza.ingredients}
+            />
+          </div>
         ))}
       </section>
     </>
